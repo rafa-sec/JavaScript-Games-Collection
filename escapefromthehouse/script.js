@@ -16,10 +16,22 @@ function killerRound(){
             killerRoom = room.connections[randomIndex];
             alert("The killer is moving!")
         }
+
+    // esconder todos
+    document.querySelectorAll(".killer").forEach(k => {
+        k.style.display = "none";
+    });
+
+    // mostrar só onde o killer está
+    const killerElement = document.getElementById("killer-" + killerRoom);
+
+    if(killerElement){
+        killerElement.style.display = "block";
+    }
 }
 
 //Action count per round
-actions = 5
+let actions = 2
 function makeAction() {
     actions -= 1
 }
@@ -78,6 +90,7 @@ function showRoom() {
     roomElements[currentRoom].style.display = "block";
 
     updateWalkMenu();
+    actions += 1
 
 }
 
@@ -86,6 +99,7 @@ function showRoom() {
 function checkCurrentRoom(){
     if(currentRoom === killerRoom){
         alert("You're in the same room of killer!")
+
 
     }
 }
